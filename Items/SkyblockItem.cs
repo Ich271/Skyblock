@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using On.Terraria.UI;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,6 +8,10 @@ namespace Skyblock.Items
 {
     public abstract class SkyblockItem : ModItem
     {
+
+
+        public string abilityName;
+
         public float manaDamageMultiply = 1;
 
         public int abilityDamage;
@@ -18,9 +24,9 @@ namespace Skyblock.Items
 
         public int cooldown = 0;
 
-        public int intelligence;
+        public int intelligence = 0;
 
-
+        public int defense = 0;
 
 
 
@@ -29,7 +35,10 @@ namespace Skyblock.Items
             if (cooldown < baseAbilityCooldown) cooldown++;
         }
 
-
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+           
+        }
 
         public override bool AltFunctionUse(Player player) { return true; }
 
@@ -39,13 +48,17 @@ namespace Skyblock.Items
             {
                 if (cooldown != baseAbilityCooldown) return false; 
 
-                Item.damage = abilityDamage;
-                Item.damage += (int)manaDamageMultiply * player.statManaMax2;
-
                 return true;
             }
             else return true;
             
+        }
+
+
+        public override void HoldItem(Player player)
+        {
+            player.statManaMax2 += intelligence;
+            player.statDefense += defense;
         }
 
 
@@ -60,7 +73,12 @@ namespace Skyblock.Items
             if (player.altFunctionUse == 2)
             {
                 Ablity(player);
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.position, Vector2.Zero, abilityProjectile, Item.damage, abilityKnockback, player.whoAmI);
+
+
+                int damage = abilityDamage * (1 + (player.statManaMax2 / 100));
+
+
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.position, Vector2.Zero, abilityProjectile, damage, abilityKnockback, player.whoAmI);
                 cooldown = 0;
             }
             return true;

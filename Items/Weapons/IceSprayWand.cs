@@ -11,15 +11,8 @@ namespace Skyblock.Items.Weapons
 		public override string Texture => "Skyblock/Textures/MoonLordsHandle";
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Ice Spray Wand");
+
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-		}
-
-		public override void HoldItem(Player player)
-		{
-			player.statManaMax2 += 20;
-
 
 		}
 
@@ -47,11 +40,12 @@ namespace Skyblock.Items.Weapons
 
 
             abilityProjectile = ModContent.ProjectileType<Projectiles.IceSpray>();
-            abilityDamage = 1;
+            abilityDamage = 100;
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
 			baseAbilityCooldown = 300;
 			cooldown = 300;
+			intelligence = 20;
         }	
 
 		public override void AddRecipes()

@@ -15,21 +15,6 @@ namespace Skyblock.Items.Weapons
 	{
 
         public override string Texture => "Skyblock/Textures/WitherBlade";
-        public override void SetStaticDefaults()
-		{
-			Tooltip.SetDefault("Item Ability: Wither Impact RIGHT CLICK \n" +
-				"Teleports 30 tiles ahead of you.Then implode dealing damage based on your total mana to nearby enemies.\n"
-				 + "Also applies the wither shield scroll ability reducing damage taken and granting an Absorption shield for 5 seconds.\n"
-				  + "Mana cost: 190");
-			
-
-		}
-
-		public override void HoldItem(Player player)
-		{
-			player.statManaMax2 += 20;
-		}
-
 
 
 
@@ -53,9 +38,10 @@ namespace Skyblock.Items.Weapons
 
 
             abilityProjectile = ModContent.ProjectileType<Projectiles.Witherimpact>();
-            abilityDamage = 1000;
+            abilityDamage = 500;
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
+            intelligence = 20;
         }
 
 
