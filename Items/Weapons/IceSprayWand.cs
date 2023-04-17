@@ -47,10 +47,11 @@ namespace Skyblock.Items.Weapons
 
 
             abilityProjectile = ModContent.ProjectileType<Projectiles.IceSpray>();
-            abilityDamage = 200;
+            abilityDamage = 1;
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
 			baseAbilityCooldown = 300;
+			cooldown = 300;
         }	
 
 		public override void AddRecipes()

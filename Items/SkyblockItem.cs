@@ -16,7 +16,7 @@ namespace Skyblock.Items
 
         public int baseAbilityCooldown = 0;
 
-        private int cooldown = 0;
+        public int cooldown = 0;
 
         public int intelligence;
 

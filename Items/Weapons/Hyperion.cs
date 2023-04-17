@@ -52,6 +52,7 @@ namespace Skyblock.Items.Weapons
 			Item.autoReuse = false;
 			Item.useAnimation = 5;
 
+
             abilityProjectile = ModContent.ProjectileType<Projectiles.Witherimpact>();
             abilityDamage = 1000;
             manaDamageMultiply = 2f;

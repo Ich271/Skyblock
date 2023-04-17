@@ -48,7 +48,6 @@ namespace Skyblock.Items.Weapons
 			Item.knockBack = 0;
 			Item.crit = 50;
 			Item.rare = ItemRarityID.Gray;
-			Item.shoot = ModContent.ProjectileType<Projectiles.Witherimpact>();
 			Item.autoReuse = false;
 			Item.useAnimation = 5;
 

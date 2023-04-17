@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System;
 using Terraria.ID;
 using Terraria.DataStructures;
+using System.Collections.Generic;
 
 namespace Skyblock.Projectiles
 {
@@ -58,27 +59,43 @@ namespace Skyblock.Projectiles
 			
         }
 
-
-
-
+        private List<int> dustIndex = new();
 
         public override void AI()
 		{
 
-
 				Timer += 4;
 
-
-            
                 Vector2 RelPos = new(Timer, (float)0.25 * (float)Math.Sin(Timer * 0.075) * Timer);   
                 Vector2 FinalPos = RelPos.RotatedBy(direction.ToRotation());
 
 				Projectile.Center = FinalPos + playerCenter;
 
-				Dust.NewDustPerfect(Projectile.Center, DustID.FireworkFountain_Blue, Velocity: Vector2.Zero, Scale: 1.5f).noGravity = true;
+				int d = Dust.NewDust(Projectile.Center, 1, 1,  DustID.FireworkFountain_Blue,  Scale: 1.5f, SpeedX: 0f, SpeedY: 0f);
+				Main.dust[d].noGravity = true;
+
+				dustIndex.Add(d);
+          
+
+
+        }
 
 
 
+
+         public override void Kill(int timeLeft)
+		{
+			int[] dustIndex = this.dustIndex.ToArray();
+
+			for (int i = 0; i < dustIndex.Length; i++) { 
+				Main.dust[dustIndex[i]].noGravity = false;
+			}
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+			target.AddBuff(ModContent.BuffType<Buffs.IceSprayDebuff>(), 300);
+			
         }
 
     }
