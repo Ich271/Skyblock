@@ -70,20 +70,16 @@ namespace Skyblock.Projectiles
 
 
             
-                Vector2 DustPos = new(Timer, (float)0.25 * (float)Math.Sin(Timer * 0.075) * Timer);
-                float angle = direction.ToRotation();
-                Vector2 finalDustPos = new Vector2(DustPos.Length() * (float)Math.Cos(DustPos.ToRotation() + angle), DustPos.Length() * (float)Math.Sin(DustPos.ToRotation() + angle));
+                Vector2 RelPos = new(Timer, (float)0.25 * (float)Math.Sin(Timer * 0.075) * Timer);   
+                Vector2 FinalPos = RelPos.RotatedBy(direction.ToRotation());
 
-				Projectile.Center = finalDustPos + playerCenter;
+				Projectile.Center = FinalPos + playerCenter;
 
 				Dust.NewDustPerfect(Projectile.Center, DustID.FireworkFountain_Blue, Velocity: Vector2.Zero, Scale: 1.5f).noGravity = true;
 
 
 
         }
-
-
-
 
     }
 }

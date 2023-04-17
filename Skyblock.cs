@@ -8,8 +8,6 @@ namespace Skyblock
     public class Skyblock : Mod
 	{
 
-
-
         public override void AddRecipeGroups()
         {
             RecipeGroup WitherBlades = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Wither Blade", new int[]
