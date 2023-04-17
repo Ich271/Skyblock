@@ -61,7 +61,7 @@ namespace Skyblock.Projectiles
 
 
 
-		public Dust dust;
+
         public override void AI()
 		{
 
@@ -76,7 +76,7 @@ namespace Skyblock.Projectiles
 
 				Projectile.Center = finalDustPos + playerCenter;
 
-				Dust.NewDustPerfect(Projectile.Center, DustID.PurificationPowder, Velocity: Vector2.Zero, Scale: 1.5f).noGravity = true;
+				Dust.NewDustPerfect(Projectile.Center, DustID.FireworkFountain_Blue, Velocity: Vector2.Zero, Scale: 1.5f).noGravity = true;
 
 
 

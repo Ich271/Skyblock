@@ -14,6 +14,20 @@ namespace Skyblock.Items
 
         public int abilityKnockback;
 
+        public int baseAbilityCooldown = 0;
+
+        private int cooldown = 0;
+
+        public int intelligence;
+
+
+
+
+
+        public override void UpdateInventory(Player player)
+        {
+            if (cooldown < baseAbilityCooldown) cooldown++;
+        }
 
 
 
@@ -23,11 +37,15 @@ namespace Skyblock.Items
         {
             if (player.altFunctionUse == 2)
             {
-                Item.damage = abilityDamage;
-                Item.damage += (int) manaDamageMultiply * player.statManaMax2;
-            }
+                if (cooldown != baseAbilityCooldown) return false; 
 
-            return true;
+                Item.damage = abilityDamage;
+                Item.damage += (int)manaDamageMultiply * player.statManaMax2;
+
+                return true;
+            }
+            else return true;
+            
         }
 
 
@@ -43,6 +61,7 @@ namespace Skyblock.Items
             {
                 Ablity(player);
                 Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.position, Vector2.Zero, abilityProjectile, Item.damage, abilityKnockback, player.whoAmI);
+                cooldown = 0;
             }
             return true;
         }

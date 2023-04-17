@@ -50,6 +50,7 @@ namespace Skyblock.Items.Weapons
             abilityDamage = 200;
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
+			baseAbilityCooldown = 120;
         }	
 
 		public override void AddRecipes()
