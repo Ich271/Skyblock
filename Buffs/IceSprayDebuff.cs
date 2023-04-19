@@ -35,6 +35,14 @@ namespace Skyblock.Buffs
             }
             else return true;
         }
+
+        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            damage *= 1.1f;
+            return true;
+        }
+
+
     }
 
 

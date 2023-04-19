@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using Skyblock.Buffs;
+using Skyblock.Rarities;
 
 namespace Skyblock.Items.Weapons
 {
@@ -16,7 +18,6 @@ namespace Skyblock.Items.Weapons
         public override string Texture => "Skyblock/Textures/WitherBlade";
 
 
-        
 
 
         public override void SetDefaults()
@@ -26,14 +27,13 @@ namespace Skyblock.Items.Weapons
 			Item.sellPrice(20, 0, 0, 0);
 			Item.damage = 150;
 			Item.DamageType = DamageClass.Melee;
-			Item.mana = 0;
 			Item.width = 32;
 			Item.height = 32;
 			Item.useTime = 5;
 			Item.noMelee = false; 
 			Item.knockBack = 0;
 			Item.crit = 50;
-			Item.rare = ItemRarityID.Gray;
+            Item.rare = ModContent.RarityType<LEGENDARY>();
 			Item.autoReuse = false;
 			Item.useAnimation = 5;
 
@@ -43,6 +43,10 @@ namespace Skyblock.Items.Weapons
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
             intelligence = 200;
+            abilityCost = 200;
+            baseAbilityCooldown = 1;
+            abilityName = "Wither Impact";
+            abilityDescription = "Teleport 30 block infront of you and Implode dealing 500 base damage";
         }
 
 
@@ -72,11 +76,14 @@ namespace Skyblock.Items.Weapons
             }
 
             //Wither Shield effect
+
+            player.AddBuff(ModContent.BuffType<Buffs.Absorption>(), 300);
+            player.GetModPlayer<AbsorptionPlayer>().absorption = 300;
             if (!player.HasBuff(ModContent.BuffType<Buffs.WitherShield>()) && player.statLife != player.statLifeMax2)
             {
-                player.AddBuff(ModContent.BuffType<Buffs.WitherShield>(), 300, false, true);
-                player.statLife += player.GetWeaponCrit(Item) * 2;
-                player.HealEffect(player.GetWeaponCrit(Item) * 2, true);
+                // player.AddBuff(ModContent.BuffType<Buffs.WitherShield>(), 300, false, true);
+                // player.statLife += player.GetWeaponCrit(Item) * 2;
+                // player.HealEffect(player.GetWeaponCrit(Item) * 2, true);
                 SoundEngine.PlaySound(new SoundStyle("Skyblock/Sounds/Item/WitherImpactSound"));
                 for (int i = 0; i < 50; i++)
                 {

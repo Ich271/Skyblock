@@ -4,8 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
+using Skyblock.Rarities;
 
 namespace Skyblock.Items.Weapons
 {
@@ -17,21 +16,20 @@ namespace Skyblock.Items.Weapons
         public override string Texture => "Skyblock/Textures/WitherBlade";
 
 
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.shootSpeed = 0;
 			Item.sellPrice(20, 0, 0, 0);
 			Item.damage = 180;
 			Item.DamageType = DamageClass.Melee;
-			Item.mana = 0;
 			Item.width = 32;
 			Item.height = 32;
 			Item.useTime = 1;
 			Item.noMelee = false;
 			Item.knockBack = 0;
 			Item.crit = 50;
-			Item.rare = ItemRarityID.Gray;
+			Item.rare = ModContent.RarityType<LEGENDARY>();
 			Item.autoReuse = false;
 			Item.useAnimation = 1;
 
@@ -41,6 +39,10 @@ namespace Skyblock.Items.Weapons
             manaDamageMultiply = 2f;
             abilityKnockback = 0;
 			intelligence = 20;
+            abilityCost = 200;
+            baseAbilityCooldown = 1;
+            abilityName = "Wither Impact";
+            abilityDescription = "Teleport 30 block infront of you and Implode dealing 500 base damage";
         }
 
 
